@@ -44,7 +44,7 @@ function startGame() {
         enemy.y = -100 * setting.traffic * (i + 1);
         enemy.style.left = Math.floor(Math.random() * (gameArea.offsetWidth - 50)) + 'px';
         enemy.style.top = enemy.y + 'px';
-        enemy.style.background = 'transparent url(./image/enemy2.png) center / cover no-repeat';
+        enemy.style.background = 'transparent url(./image/spaceship-enemy.png) center / cover no-repeat';
         gameArea.appendChild(enemy);
     }
 
