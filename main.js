@@ -1,6 +1,6 @@
 const score = document.querySelector('.score');
 const start = document.querySelector('.start');
-const startButton = document.querySelector('.start button');
+const startButtons = document.querySelectorAll('.start button');
 const gameArea = document.querySelector('.gameArea');
 const car = document.createElement('div');
 
@@ -9,7 +9,9 @@ const music = document.createElement('audio');
 
 car.classList.add('car');
 
-startButton.addEventListener('click', startGame);
+startButtons.forEach(function(element) {
+    element.addEventListener('click', startGame);
+});
 document.addEventListener('keydown', startRun);
 document.addEventListener('keyup', stopRun);
 
@@ -31,9 +33,11 @@ function getQuantityElements(heightElement) {
     return document.documentElement.clientHeight / heightElement + 1;
 }
 
-function startGame() {
+function startGame(event) {
     start.classList.add('hide');
     gameArea.innerHTML = '';
+
+    setting.speed = event.target.getAttribute('data-speed') * 1;
 
     for (let i = 0; i < getQuantityElements(100); i++) {
         const line = document.createElement('div');

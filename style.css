@@ -53,7 +53,6 @@ table {
     z-index: 200;
     color: #fff;
     background: black;
-    cursor: pointer;
     font-family: sans-serif;
 }
 .start button {
