@@ -9,7 +9,7 @@ const music = document.createElement('audio');
 
 car.classList.add('car');
 
-startButtons.forEach(function(element) {
+startButtons.forEach(function (element) {
     element.addEventListener('click', startGame);
 });
 document.addEventListener('keydown', startRun);
@@ -62,7 +62,7 @@ function startGame(event) {
     setting.start = true;
     gameArea.appendChild(car);
 
-    car.style.left = gameArea.offsetWidth/2 - car.offsetWidth/2;
+    car.style.left = gameArea.offsetWidth / 2 - car.offsetWidth / 2;
     car.style.top = 'auto';
     car.style.bottom = '10px';
 
@@ -144,13 +144,24 @@ function moveEnemy() {
         let enemyRect = enemy.getBoundingClientRect();
 
         if (carRect.top <= enemyRect.bottom &&
-            carRect.right >= enemyRect.left && 
+            carRect.right >= enemyRect.left &&
             carRect.left <= enemyRect.right &&
             carRect.bottom >= enemyRect.top) {
+
             setting.start = false;
+
             start.classList.remove('hide');
             start.style.top = score.offsetHeight;
+
             music.src = '';
+
+            lastScore = localStorage.getItem('score');
+            if (lastScore < setting.score) {
+                localStorage.setItem('score', setting.score);
+                let record = document.createElement('div');
+                record.innerText = 'Рекорд побит!';
+                score.appendChild(record);
+            }
         }
 
         enemy.y += setting.speed / 2;
