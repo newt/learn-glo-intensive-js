@@ -1,11 +1,15 @@
 const score = document.querySelector('.score');
 const start = document.querySelector('.start');
+const startButton = document.querySelector('.start button');
 const gameArea = document.querySelector('.gameArea');
 const car = document.createElement('div');
 
+const musicCheck = document.querySelector('#music-check');
+const music = document.createElement('audio');
+
 car.classList.add('car');
 
-start.addEventListener('click', startGame);
+startButton.addEventListener('click', startGame);
 document.addEventListener('keydown', startRun);
 document.addEventListener('keyup', stopRun);
 
@@ -51,6 +55,18 @@ function startGame() {
 
     setting.start = true;
     gameArea.appendChild(car);
+
+    /**
+     * используем audio для зацикливания фрагмента
+     * embed так не умеет
+     */
+    if (musicCheck.checked) {
+        music.setAttribute('src', './music/loop.mp3');
+        music.setAttribute('type', 'audio/mp3');
+        music.setAttribute('loop', 'loop');
+        music.setAttribute('autoplay', true);
+    }
+
     setting.x = car.offsetLeft;
     setting.y = car.offsetTop;
 
