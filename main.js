@@ -41,7 +41,6 @@ function startGame() {
     for (let i = 0; i < getQuantityElements(100 * setting.traffic); i++) {
         const enemy = document.createElement('div');
         let enemyImg = Math.floor(Math.random() * (3 - 1 + 1) + 1);
-        console.log(enemyImg);
         enemy.classList.add('enemy');
         enemy.y = -100 * setting.traffic * (i + 1);
         enemy.style.left = Math.floor(Math.random() * (gameArea.offsetWidth - 50)) + 'px';
@@ -84,12 +83,16 @@ function playGame() {
 
 function startRun(event) {
     event.preventDefault();
-    keys[event.key] = true;
+    if (event.key in keys) {
+        keys[event.key] = true;
+    }
 }
 
 function stopRun(event) {
     event.preventDefault();
-    keys[event.key] = false;
+    if (event.key in keys) {
+        keys[event.key] = false;
+    }
 }
 
 function moveRoad() {
